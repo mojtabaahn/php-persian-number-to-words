@@ -23,8 +23,11 @@ composer require mojtabaahn/php-persian-number-to-words
 
 ``` php
 $dictionary = new MojtabaaHN\PersianNumberToWords\Dictionary();
+
 $converter = new MojtabaaHN\PersianNumberToWords\PersianNumberToWords($dictionary);
+
 echo $converter->convert(999999999);
+
 // نهصد و نود و نه میلیون و نهصد و نود و نه هزار و نهصد و نود و نه
 ```
 ## Customizing Dictionary
@@ -36,13 +39,17 @@ $dictionary = (new MojtabaaHN\PersianNumberToWords\Dictionary())
     ->setZero('هیچ')
     ->setNegative('منهای')
     ->setSeparator(' ُ ');
+
 // Also ->setUnits(array $units) & -> setSuffixes(array $suffixes) are availabe
 
 $converter = new MojtabaaHN\PersianNumberToWords\PersianNumberToWords($dictionary);
+
 echo $converter->convert(0);
 // هیچ
+
 echo $converter->convert(-10);
 // منهای ده
+
 echo $converter->convert(229);
 // دویست ُ بیست ُ نه
 
