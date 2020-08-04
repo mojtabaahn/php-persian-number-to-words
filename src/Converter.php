@@ -63,9 +63,7 @@ class Converter
             return '';
         }
 
-        $convertedRemainder = $this->convert((int)$remainder, false);
-
-        return $convertedRemainder;
+        return $this->convert((int)$remainder, false);
     }
 
     protected function applySign(string $convertedNumber, bool $isInitial): string
@@ -79,14 +77,13 @@ class Converter
 
     protected function convertTriplet(string $chunk, $chunkLevel)
     {
-        $result = [];
-
         $triplet = (int)$chunk;
 
         $units = $triplet % 10;
         $tens = (int)($triplet / 10) % 10;
         $hundreds = (int)($triplet / 100) % 10;
 
+        $result = [];
         if ($hundreds !== 0) {
             $result[] = $this->dictionary->unit($hundreds * 100);
         }
