@@ -30,7 +30,7 @@ echo $converter->convert(999999999);
 
 // نهصد و نود و نه میلیون و نهصد و نود و نه هزار و نهصد و نود و نه
 ```
-## Customizing Dictionary
+## Configuration
 
 It is possible to customize the way output should look like using Dictionary class setter methods.
 
@@ -55,6 +55,7 @@ echo $converter->convert(229);
 
 ```
 
+## Default Configuration
 This code is a part of Dictionary class, you can see all default Configuration:
 ```php
 class Dictionary
