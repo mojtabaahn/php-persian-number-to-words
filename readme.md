@@ -26,8 +26,16 @@ $dictionary = new MojtabaaHN\PersianNumberToWords\Dictionary();
 
 $converter = new MojtabaaHN\PersianNumberToWords\PersianNumberToWords($dictionary);
 
-echo $converter->convert(999999999);
+echo $converter->convert(0);
+// صفر
 
+echo $converter->convert(-10);
+// منفی ده
+
+echo $converter->convert(229);
+// دویست و بیست و نه
+
+echo $converter->convert(999999999);
 // نهصد و نود و نه میلیون و نهصد و نود و نه هزار و نهصد و نود و نه
 ```
 ## Configuration
