@@ -1,6 +1,5 @@
 <?php
-
-namespace Mojtabaahn\PersianNumberToWords\Tests;
+namespace MojtabaaHN\PersianNumberToWords\Tests;
 
 class TestArray{
     public CONST TESTS = [

@@ -8,13 +8,8 @@ class Dictionary
 
     protected string $negative = 'منفی';
 
-    protected string $words_separator = " و ";
-
-    protected string $chunk_separator = " و ";
-
-    protected string $triplet_and_suffix_separator = " ";
-
-    protected string $negative_and_words_separator = " ";
+    /** Token to separate words in triplets and chunks in final string */
+    protected string $separator = " و ";
 
     protected array $units = [
         1 => 'یک',
@@ -79,20 +74,10 @@ class Dictionary
         63 => 'دسیلیارد',
     ];
 
-    public function zero(): string
-    {
-        return $this->zero;
-    }
-
     public function setZero(string $zero): Dictionary
     {
         $this->zero = $zero;
         return $this;
-    }
-
-    public function negative(): string
-    {
-        return $this->negative;
     }
 
     public function setNegative(string $negative): Dictionary
@@ -101,58 +86,10 @@ class Dictionary
         return $this;
     }
 
-    public function wordsSeparator(): string
+    public function setSeparator(string $separator): Dictionary
     {
-        return $this->words_separator;
-    }
-
-    public function setWordsSeparator(string $words_separator): Dictionary
-    {
-        $this->words_separator = $words_separator;
+        $this->separator = $separator;
         return $this;
-    }
-
-    public function chunkSeparator(): string
-    {
-        return $this->chunk_separator;
-    }
-
-    public function setChunkSeparator(string $chunk_separator): Dictionary
-    {
-        $this->chunk_separator = $chunk_separator;
-        return $this;
-    }
-
-    public function tripletAndSuffixSeparator(): string
-    {
-        return $this->triplet_and_suffix_separator;
-    }
-
-    public function setTripletAndSuffixSeparator(string $triplet_and_suffix_separator): Dictionary
-    {
-        $this->triplet_and_suffix_separator = $triplet_and_suffix_separator;
-        return $this;
-    }
-
-    public function negativeAndWordsSeparator(): string
-    {
-        return $this->negative_and_words_separator;
-    }
-
-    public function setNegativeAndWordsSeparator(string $negative_and_words_separator): Dictionary
-    {
-        $this->negative_and_words_separator = $negative_and_words_separator;
-        return $this;
-    }
-
-    public function units()
-    {
-        return $this->units;
-    }
-
-    public function unit(int $unit)
-    {
-        return $this->units[$unit];
     }
 
     public function setUnits(array $units): Dictionary
@@ -161,20 +98,36 @@ class Dictionary
         return $this;
     }
 
-    public function suffixes()
-    {
-        return $this->suffixes;
-    }
-
-    public function suffix(string $level)
-    {
-        return $this->suffixes[$level];
-    }
-
     public function setSuffixes($suffixes): Dictionary
     {
         $this->suffixes = $suffixes;
         return $this;
+    }
+
+    public function zero(): string
+    {
+        return $this->zero;
+    }
+
+    public function addNegative(string $arg)
+    {
+        return $this->negative . ' ' . $arg;
+    }
+
+    public function separate(string ...$args)
+    {
+        $filteredArgs = array_filter($args, fn($input) => $input !== '');
+        return implode($this->separator, $filteredArgs);
+    }
+
+    public function unit(int $unit)
+    {
+        return $this->units[$unit];
+    }
+
+    public function addSuffix(string $string, int $level)
+    {
+        return $string . ' ' . $this->suffixes[$level];
     }
 
 }

@@ -28,11 +28,11 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "MojtabaaHn\\PersianNumberToWords\\Tests\\": "tests"
+      "MojtabaaHN\\PersianNumberToWords\\Tests\\": "./tests"
     }
   },
   "scripts": {
-    "test": "vendor/bin/pest"
+    "test": "pest"
   },
   "minimum-stability": "dev",
   "prefer-stable": true

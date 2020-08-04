@@ -23,27 +23,41 @@ composer require mojtabaahn/php-persian-number-to-words
 
 ``` php
 $dictionary = new MojtabaaHN\PersianNumberToWords\Dictionary();
-$converter = new MojtabaaHN\PersianNumberToWords\PersianNumberToWords();
+$converter = new MojtabaaHN\PersianNumberToWords\PersianNumberToWords($dictionary);
 echo $converter->convert(999999999);
 // نهصد و نود و نه میلیون و نهصد و نود و نه هزار و نهصد و نود و نه
 ```
 ## Customizing Dictionary
 
+It is possible to customize the way output should look like using Dictionary class setter methods.
+
+``` php
+$dictionary = (new MojtabaaHN\PersianNumberToWords\Dictionary())
+    ->setZero('هیچ')
+    ->setNegative('منهای')
+    ->setSeparator(' ُ ');
+// Also ->setUnits(array $units) & -> setSuffixes(array $suffixes) are availabe
+
+$converter = new MojtabaaHN\PersianNumberToWords\PersianNumberToWords($dictionary);
+echo $converter->convert(0);
+// هیچ
+echo $converter->convert(-10);
+// منهای ده
+echo $converter->convert(229);
+// دویست ُ بیست ُ نه
+
+```
+
 This code is a part of Dictionary class, you can see all default Configuration:
 ```php
 class Dictionary
 {
-protected string $zero = 'صفر';
+
+    protected string $zero = 'صفر';
 
     protected string $negative = 'منفی';
 
-    protected string $words_separator = " و ";
-
-    protected string $chunk_separator = " و ";
-
-    protected string $triplet_and_suffix_separator = " ";
-
-    protected string $negative_and_words_separator = " ";
+    protected string $separator = " و ";
 
     protected array $units = [
         1 => 'یک',
@@ -108,22 +122,9 @@ protected string $zero = 'صفر';
         63 => 'دسیلیارد',
     ];
 
-// Getters & Setters
+    // Setters & Helpers...
 
 }
-```
-It is possible to customize all of these options using their setters:
-
-``` php
-$dictionary = (new MojtabaaHN\PersianNumberToWords\Dictionary())
-    ->setZero(string $str)
-    ->setNegative(string $str)
-    ->setWordsSeparator(string $str)
-    ->setChunkSeparator(string $str)
-    ->setTripletAndSuffixSeparator(string $str)
-    ->setNegativeAndWordsSeparator(string $str)
-    ->setUnits(array $units)
-    ->setSuffixes(array $suffixes);
 ```
 
 ## Testing

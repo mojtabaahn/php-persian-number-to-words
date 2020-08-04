@@ -29,7 +29,7 @@ class Converter
 
         $convertedTriplet = $this->convertTriplet($chunk, $chunkLevel);
 
-        $convertedNumber = $convertedTriplet . $convertedRemainder;
+        $convertedNumber = $this->dictionary->separate($convertedTriplet, $convertedRemainder);
 
         return $this->applySign($convertedNumber, $initial);
     }
@@ -65,17 +65,13 @@ class Converter
 
         $convertedRemainder = $this->convert((int)$remainder, false);
 
-        if ($convertedRemainder !== '') {
-            $convertedRemainder = $this->dictionary->chunkSeparator() . $convertedRemainder;
-        }
-
         return $convertedRemainder;
     }
 
     protected function applySign(string $convertedNumber, bool $isInitial): string
     {
         if ($this->isNegative && $isInitial) {
-            return $this->dictionary->negative() . $this->dictionary->negativeAndWordsSeparator() . $convertedNumber;
+            return $this->dictionary->addNegative($convertedNumber);
         }
 
         return $convertedNumber;
@@ -106,10 +102,10 @@ class Converter
             }
         }
 
-        $result = implode($this->dictionary->chunkSeparator(), $result);
+        $result = $this->dictionary->separate(...$result);
 
         if ($chunkLevel !== 0) {
-            $result .= $this->dictionary->tripletAndSuffixSeparator() . $this->dictionary->suffix($chunkLevel);
+            $result = $this->dictionary->addSuffix($result, $chunkLevel);
         }
 
         return $result;

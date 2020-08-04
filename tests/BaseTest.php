@@ -5,7 +5,7 @@ use MojtabaaHN\PersianNumberToWords\PersianNumberToWords;
 
 $instance = new PersianNumberToWords(new Dictionary());
 
-$testArray = \Mojtabaahn\PersianNumberToWords\Tests\TestArray::TESTS;
+$testArray = \MojtabaaHN\PersianNumberToWords\Tests\TestArray::TESTS;
 
 foreach ($testArray as $index => $testItem) {
     it("assert converts {$testItem[0]} to string with no errors")
