@@ -15,10 +15,10 @@
     }
   ],
   "require": {
-    "php": "^7.4"
+    "php": "^7.4|^8.0"
   },
   "require-dev": {
-    "pestphp/pest": "^0.2.3",
+    "pestphp/pest": "^0.2.3|^1.0",
     "phpunit/phpunit": "^9.0"
   },
   "autoload": {
@@ -35,5 +35,10 @@
     "test": "pest"
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
 }
